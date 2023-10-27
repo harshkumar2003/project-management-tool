@@ -1,0 +1,33 @@
+body{
+    padding: 0;
+    margin: 0;
+}
+.nav
+{
+    display: flex;
+    justify-content:space-between;
+    background-color: #414a4c;
+}
+.logo
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo img{
+    
+    width: 256px;
+    height: 50px;
+}
+.nav .text
+{
+    display:flex ;
+    align-items: center;
+    padding-left: 50px;
+
+}
+.text a{
+    text-decoration: none;
+    color: white;
+}
