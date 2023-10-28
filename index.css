@@ -84,7 +84,16 @@ h5
 .modal-content
 {
     display:block;
-    background-color:white;
+    background-color:#ffa599;
+    background-image:
+    radial-gradient(at 78% 53%, hsla(320,62%,62%,1) 0px, transparent 50%),
+    radial-gradient(at 4% 4%, hsla(320,82%,66%,1) 0px, transparent 50%),
+    radial-gradient(at 62% 12%, hsla(94,80%,74%,1) 0px, transparent 50%),
+    radial-gradient(at 9% 55%, hsla(239,82%,71%,1) 0px, transparent 50%),
+    radial-gradient(at 92% 40%, hsla(155,75%,74%,1) 0px, transparent 50%),
+    radial-gradient(at 78% 84%, hsla(17,86%,78%,1) 0px, transparent 50%),
+    radial-gradient(at 1% 39%, hsla(108,90%,76%,1) 0px, transparent 50%);
+    /* background-color:white; */
     margin: 40px auto;
     border: 1px solid #888;
     width: 450px;
