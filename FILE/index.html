@@ -32,7 +32,7 @@
                             <label for="email"><b>E-mail</b></label>
                             <input type="text" placeholder="Enter e-mail" name="email" id="email" required>
                             <label for="password"><b>Password</b></label>
-                            <input type="password" placeholder="Enter Password" name="password" id="password" required>
+                            <input type="password" placeholder="Enter Password" name="password" id="password" required >
                             <button type="button" id="register" name="register" class="logbut">Sign-up</button>
                             <label>
                                 <input type="checkbox" checked="checked" name="remeber"> Remember me
@@ -58,8 +58,7 @@
                             <label for="email"><b>E-mail</b></label>
                             <input type="text" placeholder="Enter e-mail" id="login_email" name="login_email" required>
                             <label for="password"><b>Password</b></label>
-                            <input type="password" placeholder="Enter Password" id="login_password"
-                                name="login_password" required>
+                            <input type="password" placeholder="Enter Password" id="login_password" name="login_password" required >
                             <button class="logbut" type="button" id="login1" name="login1">Login</button>
                             <label>
                                 <input type="checkbox" checked="checked" name="remeber"> Remember me
@@ -105,10 +104,11 @@
     };
     // Initialize Firebase
     const app = initializeApp(firebaseConfig);
-    const analytics = getAnalytics(app);
-    const auth = getAuth();
-    const database = getDatabase();
+    const analytics = getAnalytics();
+    const auth = getAuth(app);
+    const database = getDatabase(app);
     console.log(app);
+    console.log(database);
 
 
 
@@ -129,10 +129,9 @@
                     set(usersRef, {
                         email: user.email,
                         //password: user.password,
-
                     }).then(() => {
                         console.log('Data saved successfully!');
-                        alert('saved');
+                        //alert('saved');
                     }).catch((error) => {
                         console.error('Error writing document: ', error);
                     });
@@ -161,14 +160,20 @@
                     const user = userCredential.user;
                     console.log(user);
                     alert(user.email + " Login successfully!!!");
+                    const dt = new Date();
                     const userRef = ref(database, 'users/' + user.uid);
+
+            
                     get(userRef).then((snapshot) => {
+                        
                         if (snapshot.exists()) {
                             const userData = snapshot.val();
+                            last_login:dt;
                             console.log('User Data:', userData);
                         }
                     });
                     window.location.href = "home.html";
+                    
                     //document.getElementById('logout').style.display = 'block';
                     // ...
                 })
