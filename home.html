@@ -14,17 +14,16 @@
         <div class="navbar">
             <ul>
                 <li><a href="http://127.0.0.1:5500/index.html">Home</a></li>
-                <li><a href="#">Dashboard</a></li>
-                <li><a href="#">Upload</a></li>
+                
                 <li class="dropdown">
                     <button onclick="myFunction()" class="dropbtn">Manage
                         <i class="fa-solid fa-circle-chevron-down"></i>
                     </button>
                     <div id="myDropdown" class="dropdown-content">
-                        <a href="#">Create</a>
                         <a href="#">Status</a>
                     </div>
                 </li>
+                <li><a href="#">About-us</a></li>
             </ul>
         </div>
         <div class="centre">
@@ -39,12 +38,15 @@
     </div>
     <div class="main-content">
         <form action="">
+            <div class="box">
+                <h5>Assign Work</h5>
             <label for="Project name"><b>Project Name</b></label>
             <input type="text" placeholder="Type Project" id="project" name="project" required><br>
             <label for="assign use"><b>Assign User</b></label>
             <input type="text" placeholder="Assign" id="assign" name="assign" required><br>
             <label for="assign task"><b>Assign Task</b></label>
-            <input type="text" placeholder="Task" id="ssign task" name="assign task" required><br>
+            <input type="text" placeholder="Task" id="assigntask" name="assigntask" required><br>
+        </div>
             <!-- radio buttiom -->
             <div class="radio">
                 <label for="priority">Priority:</label>
@@ -54,7 +56,10 @@
                 <label for="2">medium</label>
                 <input type="radio" id="3" name="priority" value="normal">
                 <label for="2">normal</label><br>
-                <button type="submit" id="submit" name="submit">Submit</button>
+                <div class="btn22">
+                    <button type="submit" id="submit" name="submit" class="done">Submit</button>
+                </div>
+                
             </div>
         </form>
     </div>
