@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project Management tools</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="home.css">
 </head>
 
 <body>
@@ -21,7 +21,7 @@
                         <i class="fa-solid fa-circle-chevron-down"></i>
                     </button>
                     <div id="myDropdown" class="dropdown-content">
-                        <a href="create.html">Create</a>
+                        <a href="#">Create</a>
                         <a href="#">Status</a>
                     </div>
                 </li>
@@ -30,14 +30,36 @@
         <div class="centre">
             <img src="logo.png" alt="logo">
         </div>
-            <div class="user">
-                <button onclick="document.getElementById('id03').style.display='block'"  class="btn1"><span class="material-symbols-outlined">
+        <div class="user">
+            <button onclick="document.getElementById('id03').style.display='block'" class="btn1"><span
+                    class="material-symbols-outlined">
                     account_circle
                 </span></button>
+        </div>
+    </div>
+    <div class="main-content">
+        <form action="">
+            <label for="Project name"><b>Project Name</b></label>
+            <input type="text" placeholder="Type Project" id="project" name="project" required><br>
+            <label for="assign use"><b>Assign User</b></label>
+            <input type="text" placeholder="Assign" id="assign" name="assign" required><br>
+            <label for="assign task"><b>Assign Task</b></label>
+            <input type="text" placeholder="Task" id="ssign task" name="assign task" required><br>
+            <!-- radio buttiom -->
+            <div class="radio">
+                <label for="priority">Priority:</label>
+                <input type="radio" id="1" name="priority" value="urgent">
+                <label for="1">urgent</label>
+                <input type="radio" id="2" name="priority" value="medium">
+                <label for="2">medium</label>
+                <input type="radio" id="3" name="priority" value="normal">
+                <label for="2">normal</label><br>
+                <button type="submit" id="submit" name="submit">Submit</button>
             </div>
+        </form>
     </div>
 </body>
-<script src="script.js"></script>
+<script src="script1.js"></script>
 <script src="https://kit.fontawesome.com/fd42e4e9fb.js" crossorigin="anonymous"></script>
 
 </html>

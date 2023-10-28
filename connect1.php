@@ -14,7 +14,6 @@
 		$stmt = $conn->prepare("insert into  log1(fname,uname , psw , psw1)values(? , ? ,? ,?)");
         $stmt->bind_param("ssss",$fname,$uname,$psw,$psw1);
 		//echo $execval;
-        //
 		$stmt->execute();
 		$conn->close();
 	}

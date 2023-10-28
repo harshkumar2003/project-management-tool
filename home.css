@@ -300,3 +300,23 @@ input[type="password" i] {
     -webkit-font-feature-settings: 'liga';
     -webkit-font-smoothing: antialiased;
 }
+/* .box
+{
+    background-color: rgb(24, 177, 177);
+    display: flex;
+    justify-content: center;
+    background-image: linear-gradient(to right, rgba(255,0,0,0), rgba(255,0,0,1));
+    padding: 20px;
+    min-height: auto;
+} */
+
+.main-content
+{
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    padding: 10px 0px ;
+    border: 3px solid black;
+    width: 300px;
+    margin: 100px auto;
+}
