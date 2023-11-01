@@ -105,7 +105,7 @@
                         email: user.email,
                     }).then(() => {
                         console.log('Data saved successfully!');
-                        window.location.href = "home.html";
+                        window.location.href = "home1.html";
                     }).catch((error) => {
                         console.error('Error writing document: ', error);
                     });
@@ -127,7 +127,7 @@
                 .then((userCredential) => {
                     const user = userCredential.user;
                     alert(user.email + " Login successfully!!!");
-                    window.location.href = "home.html";
+                    window.location.href = "home1.html";
                     const dt = new Date();
                     const userRef = ref(database, 'users/' + user.uid);
 
