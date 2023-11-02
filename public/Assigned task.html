@@ -4,23 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Assigned task</title>
+    <title>User Projects</title>
     <link rel="stylesheet" href="home.css">
 </head>
 
 <body>
     <div class="nav-main">
-
         <div class="navbar">
             <ul>
                 <li><a href="http://127.0.0.1:5500/index.html">Home</a></li>
-
                 <li class="dropdown">
                     <button onclick="myFunction()" class="dropbtn">Manage
                         <i class="fa-solid fa-circle-chevron-down"></i>
                     </button>
                     <div id="myDropdown" class="dropdown-content">
-                        <a href="#">Assigned Task</a>
+                        <a href="http://127.0.0.1:5500/home.html">Assign Work</a>
                     </div>
                 </li>
                 <li><a href="#">About-us</a></li>
@@ -37,120 +35,154 @@
             <button onclick="logout()" class="btn1" id="logout" name="logout">Logout</button>
         </div>
     </div>
-    <div class="main">
-        <h4>Yor Assigned Work</h4>
-        <ul id="task-list">
-            <!-- Task items will be dynamically added here using JavaScript -->
-        </ul>
+    <div class="details">
+        <h5>Your Assigned Task</h5>
 
+        <div class="project-details">
 
+            <!-- Project details will be displayed here -->
+        </div>
     </div>
 
-</body>
-<script src="script1.js"></script>
-<script src="https://kit.fontawesome.com/fd42e4e9fb.js" crossorigin="anonymous"></script>
-<!-- <script src="https://www.gstatic.com/firebasejs/10.5.2/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.5.2/firebase-database.js"></script>
-<script src="assigned-task.js"></script> -->
 
-<script type="module">
-    // Import the functions you need from the SDKs you need
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-app.js";
-    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-analytics.js";
-    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-auth.js";
-    import { getDatabase, ref, set, get, push } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-database.js";
-    //import { getAuth } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-auth.js";
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-app.js";
+        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-auth.js";
+        import { getDatabase, ref, get, set, remove } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-database.js";
 
-    // TODO: Add SDKs for Firebase products that you want to use
-    // https://firebase.google.com/docs/web/setup#available-libraries
+        const firebaseConfig = {
+            apiKey: "AIzaSyBqyYXndru5uVI60tp6eu3A1A7Jho-1Fys",
+            authDomain: "login-auth-7a8b9.firebaseapp.com",
+            databaseURL: "https://login-auth-7a8b9-default-rtdb.firebaseio.com",
+            projectId: "login-auth-7a8b9",
+            storageBucket: "login-auth-7a8b9.appspot.com",
+            messagingSenderId: "786370328154",
+            appId: "1:786370328154:web:75193de1d672e27e700a63"
+        };
 
-    // Your web app's Firebase configuration
-    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-    const firebaseConfig = {
-        apiKey: "AIzaSyBqyYXndru5uVI60tp6eu3A1A7Jho-1Fys",
-        authDomain: "login-auth-7a8b9.firebaseapp.com",
-        databaseURL: "https://login-auth-7a8b9-default-rtdb.firebaseio.com",
-        projectId: "login-auth-7a8b9",
-        storageBucket: "login-auth-7a8b9.appspot.com",
-        messagingSenderId: "786370328154",
-        appId: "1:786370328154:web:75193de1d672e27e700a63"
-    };
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-    const analytics = getAnalytics();
-    const auth = getAuth(app);
-    const database = getDatabase(app);
-    const user = auth.currentUser;
-    console.log(app);
-    console.log(database);
-    document.addEventListener("DOMContentLoaded", function () {
-        document.getElementById('info').addEventListener("click", function () {
-            const user = auth.currentUser;
-            if (user !== null) {
-                const email = user.email;
-                const uid = user.uid;
-                document.getElementById("user-email").textContent = "User Email: " + email;
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const database = getDatabase(app);
+
+        document.addEventListener("DOMContentLoaded", function () {
+            auth.onAuthStateChanged(function (user) {
+                if (user) {
+                    const email = user.email;
+                    document.getElementById("user-email").textContent = "User Email: " + email;
+                    displayUserProjects(email);
+                } else {
+                    // Redirect to the login page if the user is not authenticated.
+                    window.location.href = 'http://127.0.0.1:5500/index.html';
+                }
+            });
+        });
+
+        function displayUserProjects(userEmail) {
+            const projectsRef = ref(database, 'projects');
+
+            // Debugging: Log before fetching data
+            console.log("Fetching project data...");
+
+            get(projectsRef)
+                .then((snapshot) => {
+                    // Debugging: Log the snapshot
+                    console.log("Snapshot:", snapshot);
+
+                    if (snapshot.exists()) {
+                        const projectData = snapshot.val();
+
+                        if (projectData) {
+                            let projectsHTML = "";
+
+                            for (const projectId in projectData) {
+                                const project = projectData[projectId];
+                                if (project.assignUser === userEmail) {
+                                    projectsHTML += `
+                                <p>Project Name: ${project.projectName}</p>
+                                <p>Task: ${project.assignTask}</p>
+                                <p>Priority: ${project.priority}</p>
+                                <button type="button" id="complete" name="complete" data-project-id="${projectId}">Complete</button>
+                                <hr>
+                            `;
+                                }
+                            }
+
+                            if (projectsHTML !== "") {
+                                document.querySelector(".project-details").innerHTML = projectsHTML;
+                            } else {
+                                document.querySelector(".project-details").innerHTML = "No projects found for this user.";
+                            }
+                        } else {
+                            document.querySelector(".project-details").innerHTML = "No projects found for this user.";
+                        }
+                    } else {
+                        console.log("Snapshot does not exist."); // Debugging output
+                        document.querySelector(".project-details").innerHTML = "No projects found for this user.";
+                    }
+                })
+                .catch((error) => {
+                    console.error("Error fetching project data: " + error.message);
+                });
+        }
+
+        document.addEventListener("click", function (e) {
+            if (e.target && e.target.id === "complete") {
+                // Complete button clicked
+                const projectId = e.target.getAttribute("data-project-id");
+                if (projectId) {
+                    // Handle marking the project as complete
+                    markProjectComplete(projectId);
+                }
             }
         });
 
-        document.getElementById('logout').addEventListener("click", function () {
-            logout();
+        // ...
+
+function markProjectComplete(projectId) {
+    console.log("Marking project as complete:", projectId);
+
+    const projectRef = ref(database, 'projects/' + projectId);
+
+    get(projectRef)
+        .then((snapshot) => {
+            if (snapshot.exists()) {
+                const projectData = snapshot.val();
+                console.log("Project Data:", projectData);
+
+                const completedProjectsRef = ref(database, 'completed_work');
+
+                set(ref(completedProjectsRef, projectId), projectData)
+                    .then(() => {
+                        remove(projectRef)
+                            .then(() => {
+                                alert("Project marked as complete and moved to 'completed_work'.");
+                                displayUserProjects(userEmail); // Refresh the project list
+                            })
+                            .catch((error) => {
+                                console.error("Error removing project: " + error.message);
+                            });
+                    })
+                    .catch((error) => {
+                        console.error("Error marking project as complete: " + error.message);
+                    });
+            } else {
+                console.error("Project not found.");
+            }
+        })
+        .catch((error) => {
+            console.error("Error fetching project data: " + error.message);
         });
+}
+
 
         function logout() {
-            signOut(auth).then(function () {
-                document.getElementById("user-email").textContent = "";
+            auth.signOut().then(function () {
+                document.getElementById("user-email").textContent = "User Email: Loading...";
                 window.location.href = 'http://127.0.0.1:5500/index.html';
             }).catch(function (error) {
                 console.error("Error logging out: " + error.message);
             });
         }
-
-
-        const user = auth.currentUser;
-        if (user !== null) {
-            const userEmail = user.email;
-            document.getElementById("user-email").textContent = "User Email: " + userEmail;
-            displayAssignedTasksForUser(userEmail);
-        }
-    });
-    // Initialize Firebase (Use the same Firebase configuration as in your original HTML file)
-
-// Function to fetch and display assigned tasks
-function fetchAssignedTasks() {
-    const user = auth.currentUser;
-
-    if (user !== null) {
-        const uid = user.uid;
-        const assignedTasksRef = ref(database, `assignedTasks/${uid}`);
-
-        get(assignedTasksRef).then((snapshot) => {
-            const taskList = document.getElementById("task-list");
-            taskList.innerHTML = ''; // Clear the task list
-
-            if (snapshot.exists()) {
-                const data = snapshot.val();
-
-                for (const taskId in data) {
-                    const task = data[taskId];
-                    const listItem = document.createElement("li");
-                    listItem.textContent = `Task: ${task.taskName}, Priority: ${task.priority}`;
-                    taskList.appendChild(listItem);
-                }
-            } else {
-                const message = document.createElement("p");
-                message.textContent = "No assigned tasks found.";
-                taskList.appendChild(message);
-            }
-        }).catch((error) => {
-            console.error("Error fetching assigned tasks: " + error.message);
-        });
-    }
-}
-
-// Call the function to fetch and display assigned tasks when the page loads
-window.addEventListener("load", fetchAssignedTasks);
-
-</script>
-
-</html>
+    </script>
+    <script src="script1.js"></script>
+    <script src="https://kit.fontawesome.com/fd42e4e9fb.js" crossorigin
