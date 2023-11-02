@@ -26,5 +26,35 @@ function myFunction() {
   };
 });
   
+function moveProjectToNewLocation(projectId, userEmail) {
+    const projectsRef = ref(database, 'projects');
+    const completedProjectsRef = ref(database, 'completedProjects');
+
+    get(projectsRef)
+        .then((snapshot) => {
+            if (snapshot.exists()) {
+                const projectData = snapshot.val();
+
+                if (projectData[projectId].assignUser === userEmail) {
+                    const projectToMove = projectData[projectId];
+                    projectToMove.completedTimestamp = Date.now();
+
+                    const newProjectRef = push(completedProjectsRef);
+                    set(newProjectRef, projectToMove);
+
+                    remove(ref(projectsRef, projectId));
+                }
+            }
+        })
+        .catch((error) => {
+            console.error("Error moving project: " + error.message);
+        });
+}
+
+// function moveProject(projectId) {
+//   const userEmail = auth.currentUser.email;
+//   moveProjectToNewLocation(projectId, userEmail);
+// }
+
 
   
