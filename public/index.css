@@ -198,13 +198,17 @@ h5
 }
 .start
 {
-    background-color:#0606ff;
+    background-color: #007BFF;
     border: none;
     outline: none;
     color: white;
     font-size: 26px;
     border-radius: 0px 16px;
     padding: 0px 23px;
+}
+.start:hover
+{
+    background-color: #0056b3;;
 }
 input[type="text" i] {
     writing-mode: horizontal-tb !important;

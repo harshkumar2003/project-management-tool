@@ -12,7 +12,7 @@
     <div class="nav-main">
         <div class="navbar">
             <ul>
-                <li><a href="http://127.0.0.1:5500/index.html">Home</a></li>
+                <li><a href="http://127.0.0.1:5500/home.html">Home</a></li>
                 <li class="dropdown">
                     <button onclick="myFunction()" class="dropbtn">Manage
                         <i class="fa-solid fa-circle-chevron-down"></i>
@@ -21,7 +21,7 @@
                         <a href="http://127.0.0.1:5500/home.html">Assign Work</a>
                     </div>
                 </li>
-                <li><a href="#">About-us</a></li>
+                <li><a href="#">Developed by</a></li>
             </ul>
         </div>
         <div class="centre">
@@ -29,10 +29,10 @@
         </div>
         <div class="user">
             <button onclick="document.getElementById('id03').style.display='block'" class="btn1" id="info" name="info">
-                <span class="material-symbols-outlined">account_circle</span>
-            </button>
-            <div id="user-email"></div> <!-- This is where the user's email will be displayed -->
-            <button onclick="logout()" class="btn1" id="logout" name="logout">Logout</button>
+                <span class="material-symbols-outlined">account_circle</span><div id="user-email"></div>
+            </button> |
+            <!-- This is where the user's email will be displayed -->
+            <button onclick="logout()" class="btn2" id="logout" name="logout">Logout</button>
         </div>
     </div>
     <div class="details">
@@ -42,6 +42,12 @@
             <!-- Project details will be displayed here -->
         </div>
     </div>
+    <footer>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Contact-us</a>
+        <a href="#">Developed by Harsh</a>
+        <p>&copy;2023 Project Management Tool</p>
+    </footer>
 </body>
 <script src="script1.js"></script>
 <script src="https://kit.fontawesome.com/fd42e4e9fb.js" crossorigin="anonymous"></script>

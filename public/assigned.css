@@ -62,10 +62,6 @@ radial-gradient(at 1% 39%, hsla(108,90%,76%,1) 0px, transparent 50%); */
     text-decoration: none;
 
 }
-.navbar a:hover
-{
-    color: wheat;
-}
 
 .navbar ul {
 
@@ -92,10 +88,7 @@ radial-gradient(at 1% 39%, hsla(108,90%,76%,1) 0px, transparent 50%); */
 .dropdown {
     overflow: hidden;
 }
-.dropdown .dropbtn:hover
-{
-    color: wheat;
-}
+
 .dropdown a {
     float: left;
     font-size: 16px;
@@ -140,12 +133,12 @@ radial-gradient(at 1% 39%, hsla(108,90%,76%,1) 0px, transparent 50%); */
 
 .dropdown-content a:hover {
     text-decoration: underline;
-    color: wheat;
 }
 
 .show {
     display: block;
 }
+
 
 #user-email {
     align-items: center;
@@ -181,12 +174,7 @@ radial-gradient(at 1% 39%, hsla(108,90%,76%,1) 0px, transparent 50%); */
     outline: none;
     border: none;
     font-size: 17px;
-    cursor: pointer;
 
-}
-.btn2:hover
-{
-    color: whitesmoke;
 }
 
 @font-face {
