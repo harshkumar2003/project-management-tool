@@ -12,13 +12,13 @@
     <div class="nav-main">
         <div class="navbar">
             <ul>
-                <li><a href="http://127.0.0.1:5500/home.html">Home</a></li>
+                <li><a href="home.html">Home</a></li>
                 <li class="dropdown">
                     <button onclick="myFunction()" class="dropbtn">Manage
                         <i class="fa-solid fa-circle-chevron-down"></i>
                     </button>
                     <div id="myDropdown" class="dropdown-content">
-                        <a href="http://127.0.0.1:5500/Assigned task.html">Assigned Task</a>
+                        <a href="Assigned task.html">Assigned Task</a>
                     </div>
                 </li>
                 <li><a href="#">Developed by</a></li>
@@ -97,7 +97,7 @@
                     setupProjectForm(user);
                 } else {
                     // Redirect to the login page if the user is not authenticated.
-                    window.location.href = 'http://127.0.0.1:5500/index.html';
+                    window.location.href = 'index.html';
                 }
             });
 
@@ -209,7 +209,7 @@
         function logout() {
             auth.signOut().then(function () {
                 document.getElementById("user-email").textContent = "User Email: Loading...";
-                window.location.href = 'http://127.0.0.1:5500/index.html';
+                window.location.href = 'index.html';
             }).catch(function (error) {
                 console.error("Error logging out: " + error.message);
             });
