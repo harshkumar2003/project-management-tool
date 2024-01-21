@@ -234,3 +234,35 @@ input[type="password" i] {
     padding-inline: 2px;
     margin:0px 0px 8px 0px;
 }
+@media screen and (max-width: 1200px) {
+    .main {
+        flex-direction: column;
+    }
+
+    .logo_side,
+    .login_side {
+        width: 100%;
+        height: auto;
+    }
+
+    .login_side {
+        padding: 15px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    h5 {
+        font-size: 3em;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .logo_side img {
+        width: 200px;
+        height: 50px;
+    }
+
+    .login_side {
+        padding: 15px;
+    }
+}
