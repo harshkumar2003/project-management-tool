@@ -4,6 +4,7 @@
 {
     display: flex;
     justify-content: center;
+    gap: 25px;
 }
 .image img{
     border: 15px solid transparent;
@@ -46,4 +47,16 @@
     position: fixed;
     bottom: 0;
     left: 0;
+    height: 35vh;
+}
+h3 {
+    display: flex;
+    font-size: 1.17em;
+    margin-block-start: 14em;
+    margin-block-end: 2.5em;
+    margin-inline-start: -178px;
+    margin-inline-end: 99px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: flex-start;
 }
